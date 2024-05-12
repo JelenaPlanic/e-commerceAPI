@@ -1,0 +1,793 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: E-Commerce API
+  contact: {}
+host: e-commerceapi-xxva.onrender.com
+basePath: /api/v1
+securityDefinitions: {}
+schemes:
+- https
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /auth/logout:
+    get:
+      summary: Logout
+      tags:
+      - Auth
+      operationId: Logout
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /auth/register:
+    post:
+      summary: Register
+      tags:
+      - Auth
+      operationId: Register
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/RegisterRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /auth/login:
+    post:
+      summary: Login
+      tags:
+      - Auth
+      operationId: Login
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/LoginRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /users:
+    get:
+      summary: Get all users
+      tags:
+      - User
+      operationId: Getallusers
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The user ID
+    get:
+      summary: Get Single User
+      tags:
+      - User
+      operationId: GetSingleUser
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /users/showMe:
+    get:
+      summary: Show current user
+      tags:
+      - User
+      operationId: Showcurrentuser
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /users/updateUser:
+    patch:
+      summary: Update User
+      tags:
+      - User
+      operationId: UpdateUser
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UpdateUserRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /users/updateUserPassword:
+    patch:
+      summary: Update User password
+      tags:
+      - User
+      operationId: UpdateUserpassword
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UpdateUserpasswordRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /products:
+    post:
+      summary: Create Product
+      tags:
+      - Products
+      operationId: CreateProduct
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/CreateProductRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get all products
+      tags:
+      - Products
+      operationId: Getallproducts
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The product ID
+    get:
+      summary: Get single product
+      tags:
+      - Products
+      operationId: Getsingleproduct
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+    patch:
+      summary: Update product
+      tags:
+      - Products
+      operationId: Updateproduct
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UpdateproductRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    delete:
+      summary: Delete product
+      tags:
+      - Products
+      operationId: Deleteproduct
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /products/uploadImage:
+    post:
+      summary: Upload Image
+      tags:
+      - Products
+      operationId: UploadImage
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: image
+        in: formData
+        required: true
+        type: file
+        format: file
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /products/{id}/reviews:
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The product ID
+    get:
+      summary: Get Single Product Reviews
+      tags:
+      - Products
+      operationId: GetSingleProductReviews
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reviews:
+    get:
+      summary: Get all reviews
+      tags:
+      - Reviews
+      operationId: Getallreviews
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+    post:
+      summary: Create Review
+      tags:
+      - Reviews
+      operationId: CreateReview
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/CreateReviewRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reviews/{id}:
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The review ID
+    get:
+      summary: Get Single Review
+      tags:
+      - Reviews
+      operationId: GetSingleReview
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  
+    patch:
+      summary: Update Review
+      tags:
+      - Reviews
+      operationId: UpdateReview
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UpdateReviewRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  
+    delete:
+      summary: Delete Review
+      tags:
+      - Reviews
+      operationId: DeleteReview
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /orders:
+    post:
+      summary: Create Order
+      tags:
+      - Orders
+      operationId: CreateOrder
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/CreateOrderRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get All Orders
+      tags:
+      - Orders
+      operationId: GetAllOrders
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /orders/{id}:
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The order ID
+    get:
+      summary: Get Single Order
+      tags:
+      - Orders
+      operationId: GetSingleOrder
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    patch:
+      summary: Update Order
+      tags:
+      - Orders
+      operationId: UpdateOrder
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UpdateOrderRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /orders/showAllMyOrders:
+    get:
+      summary: Get Current User Orders
+      tags:
+      - Orders
+      operationId: GetCurrentUserOrders
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+definitions:
+  RegisterRequest:
+    title: RegisterRequest
+    example:
+      name: lidija
+      email: lidija@gmail.com
+      password: secret
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - name
+    - email
+    - password
+  LoginRequest:
+    title: LoginRequest
+    example:
+      email: bea@gmail.com
+      password: secret
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+  UpdateUserRequest:
+    title: UpdateUserRequest
+    example:
+      name: jeca
+      email: jeca@gmail.com
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+    required:
+    - name
+    - email
+  UpdateUserpasswordRequest:
+    title: UpdateUserpasswordRequest
+    example:
+      oldPassword: secret10
+      newPassword: newSecret
+    type: object
+    properties:
+      oldPassword:
+        type: string
+      newPassword:
+        type: string
+    required:
+    - oldPassword
+    - newPassword
+  CreateProductRequest:
+    title: CreateProductRequest
+    example:
+      name: test product
+      price: 100
+      colors:
+      - '#0000ff'
+      - '#000'
+      company: ikea
+      description: 'test '
+      category: bedroom
+    type: object
+    properties:
+      name:
+        type: string
+      price:
+        type: integer
+        format: int32
+      colors:
+        type: array
+        items:
+          type: string
+      company:
+        type: string
+      description:
+        type: string
+      category:
+        type: string
+    required:
+    - name
+    - price
+    - colors
+    - company
+    - description
+    - category
+  UpdateproductRequest:
+    title: UpdateproductRequest
+    example:
+      name: Update Name of product
+      price: 1500
+      featured: true
+      user: 66339f452063e03ac9d5d623
+    type: object
+    properties:
+      name:
+        type: string
+      price:
+        type: integer
+        format: int32
+      featured:
+        type: boolean
+      user:
+        type: string
+    required:
+    - name
+    - price
+    - featured
+    - user
+  CreateReviewRequest:
+    title: CreateReviewRequest
+    example:
+      product: 663cf386422feafdc03375f4
+      rating: 5
+      title: good product Lidija
+      comment: very vey good product
+    type: object
+    properties:
+      product:
+        type: string
+      rating:
+        type: integer
+        format: int32
+      title:
+        type: string
+      comment:
+        type: string
+    required:
+    - product
+    - rating
+    - title
+    - comment
+  UpdateReviewRequest:
+    title: UpdateReviewRequest
+    example:
+      rating: 3
+      title: very bad product
+      comment: not satisfied with this product
+    type: object
+    properties:
+      rating:
+        type: integer
+        format: int32
+      title:
+        type: string
+      comment:
+        type: string
+    required:
+    - rating
+    - title
+    - comment
+  CreateOrderRequest:
+    title: CreateOrderRequest
+    example:
+      tax: 150
+      shippingFee: 800
+      items:
+      - name: bed
+        price: 50
+        image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+        amount: 3
+        product: 663ceb873a631f5c18355336
+      - name: test
+        price: 50
+        image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+        amount: 1
+        product: 663ceb873a631f5c18355336
+    type: object
+    properties:
+      tax:
+        type: integer
+        format: int32
+      shippingFee:
+        type: integer
+        format: int32
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Item'
+    required:
+    - tax
+    - shippingFee
+    - items
+  Item:
+    title: Item
+    example:
+      name: bed
+      price: 50
+      image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+      amount: 3
+      product: 663ceb873a631f5c18355336
+    type: object
+    properties:
+      name:
+        type: string
+      price:
+        type: integer
+        format: int32
+      image:
+        type: string
+      amount:
+        type: integer
+        format: int32
+      product:
+        type: string
+    required:
+    - name
+    - price
+    - image
+    - amount
+    - product
+  UpdateOrderRequest:
+    title: UpdateOrderRequest
+    example:
+      paymentIntentId: someRandomId
+    type: object
+    properties:
+      paymentIntentId:
+        type: string
+    required:
+    - paymentIntentId
+tags:
+- name: Auth
+- name: User
+- name: Products
+- name: Reviews
+- name: Orders
+   

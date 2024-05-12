@@ -14,6 +14,12 @@ const rateLimiter = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 
+// swagger
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");
+
+
 // database
 const connectDB = require("./db/connectDB");
 
@@ -51,6 +57,8 @@ app.use(fileUpload());
 // app.get("/", (req, res) => {
 //     res.send('E-Commerce API');
 // });
+
+app.use("/api-use", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.get("/api/v1", (req, res) => {
     //console.log(req.cookies);
